@@ -44,7 +44,10 @@ class HomeController extends Controller {
                     blocks: [
                         {
                             type: 'section',
-                            text: displayName,
+                            text: {
+                                type: 'markdown',
+                                text: displayName,
+                            },
                             accessory: {
                                 type: 'image',
                                 image_url: profileImg32,

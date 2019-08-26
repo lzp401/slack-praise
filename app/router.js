@@ -9,7 +9,8 @@ module.exports = app => {
 
     router.post('/api/praise', ctx => {
         ctx.body = {
-            text: 'Your praise is received!',
+            response_type: 'in_channel',
+            text: `${ctx.request.body.user_name}, Your praise is received!`,
             attachments: Object.keys(ctx.request.body)
                 .map(key => `${key}: ${ctx.request.body[key]}`)
                 .map(text => ({ text })),

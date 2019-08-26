@@ -10,8 +10,8 @@ module.exports = app => {
     router.post('/api/praise', ctx => {
         ctx.body = {
             text: 'Your praise is received!',
-            attachments: Object.keys(ctx.query)
-                .map(key => `${key}: ${ctx.query[key]}`)
+            attachments: Object.keys(ctx.request.body)
+                .map(key => `${key}: ${ctx.request.body[key]}`)
                 .map(text => ({ text })),
         };
         ctx.set('Content-Type', 'application/json');

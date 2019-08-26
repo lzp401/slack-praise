@@ -6,25 +6,31 @@
  * @param {Egg.EggAppInfo} appInfo app info
  */
 module.exports = appInfo => {
-  /**
-   * built-in config
-   * @type {Egg.EggAppConfig}
-   **/
-  const config = exports = {};
+    /**
+     * built-in config
+     * @type {Egg.EggAppConfig}
+     **/
+    const config = exports = {};
 
-  // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1566624274980_7173';
+    // use for cookie sign key, should change to your own and keep security
+    config.keys = appInfo.name + '_1566624274980_7173';
 
-  // add your middleware config here
-  config.middleware = [];
+    // add your middleware config here
+    config.middleware = [];
 
-  // add your user config here
-  const userConfig = {
-    // myAppName: 'egg',
-  };
+    config.security = {
+        csrf: {
+            enable: false,
+        },
+    };
 
-  return {
-    ...config,
-    ...userConfig,
-  };
+    // add your user config here
+    const userConfig = {
+        // myAppName: 'egg',
+    };
+
+    return {
+        ...config,
+        ...userConfig,
+    };
 };

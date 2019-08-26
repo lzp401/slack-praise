@@ -38,22 +38,25 @@ class HomeController extends Controller {
 
         ctx.body = {
             response_type: 'in_channel',
-            text: `${user_name}, Your praise is received!`,
-            attachments: [
+            blocks: [
                 {
-                    blocks: [
-                        {
-                            type: 'section',
-                            text: {
-                                type: 'markdown',
-                                text: displayName,
-                            },
-                            accessory: {
-                                type: 'image',
-                                image_url: profileImg32,
-                            },
-                        },
-                    ],
+                    type: 'section',
+                    text: {
+                        type: 'mrkdwn',
+                        text: `*${user_name}*, Your praise is received!`,
+                    },
+                },
+                {
+                    type: 'section',
+                    text: {
+                        type: 'mrkdwn',
+                        text: displayName,
+                    },
+                    accessory: {
+                        type: 'image',
+                        image_url: profileImg32,
+                        alt_text: 'avatar',
+                    },
                 },
             ],
         };

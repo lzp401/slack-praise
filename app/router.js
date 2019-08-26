@@ -6,15 +6,5 @@
 module.exports = app => {
     const { router, controller } = app;
     router.get('/', controller.home.index);
-
-    router.post('/api/praise', ctx => {
-        ctx.body = {
-            response_type: 'in_channel',
-            text: `${ctx.request.body.user_name}, Your praise is received!`,
-            attachments: Object.keys(ctx.request.body)
-                .map(key => `${key}: ${ctx.request.body[key]}`)
-                .map(text => ({ text })),
-        };
-        ctx.set('Content-Type', 'application/json');
-    });
+    router.post('/api/praise', controller.home.receiveCommand);
 };

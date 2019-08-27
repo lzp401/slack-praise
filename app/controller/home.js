@@ -1,10 +1,13 @@
 'use strict';
 
 const Controller = require('egg').Controller;
-const token = 'xoxp-725565328610-730634192065-738359640496-359c34eadaf6dda51e992091fd268ae9';
 const userIdReg = /<@(.+)>/;
 
 class HomeController extends Controller {
+    get token() {
+        return this.app.config.slackAppToken;
+    }
+
     async index() {
         const { ctx } = this;
         ctx.body = 'hi, egg';
@@ -23,7 +26,7 @@ class HomeController extends Controller {
             const [ mentionedId ] = mentionText.split('|');
 
             const profileResp = await this.ctx.curl(
-                `https://slack.com/api/users.profile.get?token=${token}&user=${mentionedId}`,
+                `https://slack.com/api/users.profile.get?token=${this.token}&user=${mentionedId}`,
                 {
                     method: 'GET',
                     dataType: 'json',
@@ -41,7 +44,7 @@ class HomeController extends Controller {
                     method: 'POST',
                     dataType: 'json',
                     data: {
-                        token,
+                        token: this.token,
                         channel: channel_id,
                         user: mentionedId,
                         text: 'Someone is mentioned you on APP luzpraise',

@@ -27,6 +27,7 @@ module.exports = appInfo => {
     // add your user config here
     const userConfig = {
         // myAppName: 'egg',
+        slackAppToken: process.env.SLACK_APP_TOKEN,
     };
 
     return {

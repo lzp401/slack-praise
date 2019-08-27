@@ -35,7 +35,7 @@ class HomeController extends Controller {
             profileImg32 = profile.image_32;
             displayName = profile.display_name_normalized;
 
-            const chartResp = await this.ctx.curl(
+            await this.ctx.curl(
                 'https://slack.com/api/chat.postEphemeral',
                 {
                     method: 'POST',
@@ -44,20 +44,10 @@ class HomeController extends Controller {
                         token,
                         channel: channel_id,
                         user: mentionedId,
-                        blocks: [
-                            {
-                                type: 'section',
-                                text: {
-                                    type: 'mrkdwn',
-                                    text: 'Some one mention you for praising!',
-                                },
-                            },
-                        ],
+                        text: 'Someone is mentioned you on APP luzpraise',
                     },
                 }
             );
-
-            this.logger.info('chart resp', chartResp);
         }
 
         ctx.body = {
